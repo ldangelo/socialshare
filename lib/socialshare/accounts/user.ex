@@ -1,7 +1,7 @@
 defmodule Socialshare.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
-
+  
 
   schema "users" do
     field :admin, :boolean, default: false

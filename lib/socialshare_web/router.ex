@@ -1,5 +1,6 @@
 defmodule SocialshareWeb.Router do
   use SocialshareWeb, :router
+  require Ueberauth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -17,6 +18,22 @@ defmodule SocialshareWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+  end
+
+  scope "/auth", SocialshareWeb do
+    pipe_through [:browser] 
+    
+    get "/", PrivateController, :index
+    
+    get "/:provider", PrivateController, :request
+    get "/:provider/callback", PrivateController, :callback
+    post "/:provider/callback", PrivateController, :callback
+    delete "/logout", PrivateController, :delete
+
+    resources "/users", UserController
+    resources "/google", GoogleController
+    resources "/linkedin", LinkedinController
   end
 
   # Other scopes may use custom stacks.

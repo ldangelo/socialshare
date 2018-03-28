@@ -20,7 +20,17 @@ defmodule Socialshare.Mixfile do
   def application do
     [
       mod: {Socialshare.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      applications: [
+        :phoenix,
+        :phoenix_html,
+        :cowboy,
+        :logger,
+        :runtime_tools,
+        :phoenix_ecto,
+        :postgrex,
+        :ueberauth,
+        :ueberauth_google
+      ]
     ]
   end
 
@@ -40,7 +50,12 @@ defmodule Socialshare.Mixfile do
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:ueberauth, "~> 0.4"},
+      {:ueberauth_google, "~> 0.2"},
+      {:ja_serializer, "~> 0.13.0"},
+      {:guardian, "~> 0.14.2"}
+      
     ]
   end
 
