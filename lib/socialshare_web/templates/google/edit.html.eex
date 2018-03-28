@@ -1,0 +1,5 @@
+<h2>Edit Google</h2>
+
+<%= render "form.html", Map.put(assigns, :action, google_path(@conn, :update, @google)) %>
+
+<span><%= link "Back", to: google_path(@conn, :index) %></span>

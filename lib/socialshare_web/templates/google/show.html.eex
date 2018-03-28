@@ -1,0 +1,33 @@
+<h2>Show Google</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @google.name %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @google.email %>
+  </li>
+
+  <li>
+    <strong>Token:</strong>
+    <%= @google.token %>
+  </li>
+
+  <li>
+    <strong>Expired:</strong>
+    <%= @google.expired %>
+  </li>
+
+  <li>
+    <strong>Expiration:</strong>
+    <%= @google.expiration %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: google_path(@conn, :edit, @google) %></span>
+<span><%= link "Back", to: google_path(@conn, :index) %></span>

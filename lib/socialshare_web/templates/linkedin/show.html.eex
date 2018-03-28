@@ -1,0 +1,33 @@
+<h2>Show Linkedin</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @linkedin.name %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @linkedin.email %>
+  </li>
+
+  <li>
+    <strong>Token:</strong>
+    <%= @linkedin.token %>
+  </li>
+
+  <li>
+    <strong>Expired:</strong>
+    <%= @linkedin.expired %>
+  </li>
+
+  <li>
+    <strong>Expiration:</strong>
+    <%= @linkedin.expiration %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: linkedin_path(@conn, :edit, @linkedin) %></span>
+<span><%= link "Back", to: linkedin_path(@conn, :index) %></span>

@@ -1,0 +1,34 @@
+<h2>Listing Linkedin</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Token</th>
+      <th>Expired</th>
+      <th>Expiration</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for linkedin <- @linkedin do %>
+    <tr>
+      <td><%= linkedin.name %></td>
+      <td><%= linkedin.email %></td>
+      <td><%= linkedin.token %></td>
+      <td><%= linkedin.expired %></td>
+      <td><%= linkedin.expiration %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: linkedin_path(@conn, :show, linkedin), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: linkedin_path(@conn, :edit, linkedin), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: linkedin_path(@conn, :delete, linkedin), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Linkedin", to: linkedin_path(@conn, :new) %></span>
