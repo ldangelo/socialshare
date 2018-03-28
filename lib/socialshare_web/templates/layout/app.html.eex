@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Socialshare!</title>
+    <title>Socialshare!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -17,7 +17,15 @@
         <nav role="navigation">
           <ul class="nav nav-pills">
               <li><a href="/">Home</a></li>
-              <li><a href="/auth/">Private</a></li>
+              <%= if @current_user do %>
+              <li><%= button "Logout", to: private_path(@conn, :delete), method: :delete, class: "btn btn-danger" %></li>
+              <% else %>
+              <li><a class="btn btn-primary btn-lg" href="/auth/google">
+                  <i class="fa fa-google"></i>
+                  Sign in with Google
+                  </a>
+              </li>
+              <% end %>
           </ul>
         </nav>
       </header>
