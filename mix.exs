@@ -29,7 +29,9 @@ defmodule Socialshare.Mixfile do
         :phoenix_ecto,
         :postgrex,
         :ueberauth,
-        :ueberauth_google
+        :ueberauth_google,
+        :ueberauth_linkedin,
+        :timex
       ]
     ]
   end
@@ -53,8 +55,11 @@ defmodule Socialshare.Mixfile do
       {:cowboy, "~> 1.0"},
       {:ueberauth, "~> 0.4"},
       {:ueberauth_google, "~> 0.2"},
+      {:ueberauth_linkedin, "~> 0.3"},
       {:ja_serializer, "~> 0.13.0"},
-      {:guardian, "~> 0.14.2"}
+      {:guardian, "~> 0.14.2"},
+      {:timex, "~> 3.0"},
+      {:timex_ecto, "~> 3.0"}
       
     ]
   end

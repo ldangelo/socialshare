@@ -8,7 +8,7 @@ defmodule Socialshare.Accounts.Linkedin do
     field :expiration, :date
     field :expired, :boolean, default: false
     field :name, :string
-    field :token, :string
+    field :token, :string, size: 1024
 
     timestamps()
   end

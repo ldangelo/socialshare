@@ -1,6 +1,6 @@
-defmodule UserFromAuth do
+defmodule LinkedInFromAuth do
   @moduledoc """
-  Retrieve the user information from an auth request
+  Retrieve the linkedin information from an auth request
   """
   require Logger
   require Poison
@@ -33,7 +33,7 @@ defmodule UserFromAuth do
   end
 
   defp basic_info(auth) do
-    %{id: auth.uid, name: name_from_auth(auth), email: email_from_auth(auth), avatar: avatar_from_auth(auth)}
+    %{id: auth.uid, name: name_from_auth(auth), email: email_from_auth(auth), token: token_from_auth(auth), expiration: expiration_from_auth(auth)}
   end
 
   defp name_from_auth(auth) do
@@ -56,6 +56,17 @@ defmodule UserFromAuth do
     end
   end
 
+  defp token_from_auth(auth) do
+    if (auth.extra.raw_info.token.access_token) do
+      auth.extra.raw_info.token.access_token
+    end
+  end
+
+  defp expiration_from_auth(auth) do
+    if auth.extra.raw_info.token.expires_at do
+      auth.extra.raw_info.token.expires_at
+    end
+  end
   defp validate_pass(%{other: %{password: ""}}) do
     {:error, "Password required"}
   end

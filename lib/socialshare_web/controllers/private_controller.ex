@@ -28,9 +28,15 @@ defmodule SocialshareWeb.PrivateController do
     |> redirect(to: "/")
   end
   
-  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
+  def google_callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
+    require IEx; IEx.pry
+
     case UserFromAuth.find_or_create(auth) do
       {:ok, user} ->
+        if Accounts.find_user_by_email(user.email) == nil do
+          Accounts.create_user(%{admin: false, name: user.name, email: user.email})
+        end
+        
         conn
         |> put_flash(:info, "Successfully authenticated.")
         |> put_session(:current_user, user)
@@ -40,5 +46,32 @@ defmodule SocialshareWeb.PrivateController do
         |> put_flash(:error, reason)
         |> redirect(to: "/")
     end
- end 
+  end   
+  
+  def linkedin_callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
+    require IEx
+
+    case LinkedInFromAuth.find_or_create(auth) do
+      {:ok, linkedin} -> 
+        if Accounts.find_linkedin_by_email(linkedin.email) == nil do
+          
+          expiration = Timex.local
+          expiration = Timex.shift(expiration, milliseconds: linkedin.expiration)
+          
+          case   Accounts.create_linkedin(%{name: linkedin.name, email: linkedin.email, token: linkedin.token, expiration: expiration, expired: false}) do
+            {:error, reason} ->
+              Logger.debug(reason)
+          end
+        end
+        
+        conn
+        |> put_flash(:info, "Successfully authenticated.")
+        |> put_session(:current_linkedin, linkedin)
+        |> redirect(to: "/")
+      {:error, reason} ->
+        conn
+        |> put_flash(:error, reason)
+        |> redirect(to: "/")
+    end
+  end 
 end

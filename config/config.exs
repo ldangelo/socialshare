@@ -26,6 +26,7 @@ config :logger, :console,
 config :ueberauth, Ueberauth,
   providers: [
     google: { Ueberauth.Strategy.Google, [default_scope: "email profile"]},
+    linkedin: { Ueberauth.Strategy.LinkedIn, [default_scope: "r_emailaddress w_share r_basicprofile"]},
     identity: { Ueberauth.Strategy.Identity, [
                   callback_methods: ["POST"],
                   uid_field: :username,
@@ -38,6 +39,14 @@ config :ueberauth, Ueberauth.Strategy.Google.OAuth,
   client_id: System.get_env("GOOGLE_CLIENT_ID"),
   client_secret: System.get_env("GOOGLE_CLIENT_SECRET"),
   redirect_uri: System.get_env("GOOGLE_REDIRECT_URI")
+
+
+# Ueberauth Strategy Config for Linkedin oauth
+config :ueberauth, Ueberauth.Strategy.LinkedIn.OAuth,
+  client_id: System.get_env("LINKEDIN_CLIENT_ID"),
+  client_secret: System.get_env("LINKEDIN_CLIENT_SECRET"),
+  redirect_uri: System.get_env("LINKEDIN_REDIRECT_URI")
+
 # Guardian configuration
 config :guardian, Guardian,
   allowed_algos: ["HS512"], # optional

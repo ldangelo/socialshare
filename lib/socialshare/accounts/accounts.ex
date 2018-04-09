@@ -21,6 +21,10 @@ defmodule Socialshare.Accounts do
     Repo.all(User)
   end
 
+  def find_user_by_email(email) do
+   Repo.get_by(User, email: email)
+  end
+  
   @doc """
   Gets a single user.
 
@@ -115,6 +119,10 @@ defmodule Socialshare.Accounts do
   """
   def list_linkedin do
     Repo.all(Linkedin)
+  end
+
+  def find_linkedin_by_email(email) do
+    Repo.get_by(Linkedin, email: email)
   end
 
   @doc """

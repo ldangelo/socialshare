@@ -19,6 +19,11 @@
               <li><a href="/">Home</a></li>
               <%= if @current_user do %>
               <li><%= button "Logout", to: private_path(@conn, :delete), method: :delete, class: "btn btn-danger" %></li>
+              <li><a class="btn btn-primary btn-lg" href="/auth/linkedin">
+                  <i class="fa fa-google"></i>
+                  Authenticate with LinkedIn 
+              </a>
+              </li>
               <% else %>
               <li><a class="btn btn-primary btn-lg" href="/auth/google">
                   <i class="fa fa-google"></i>

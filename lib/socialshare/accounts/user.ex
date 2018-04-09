@@ -16,5 +16,6 @@ defmodule Socialshare.Accounts.User do
     user
     |> cast(attrs, [:name, :email, :admin])
     |> validate_required([:name, :email, :admin])
+    |> unique_constraint(:email)
   end
 end

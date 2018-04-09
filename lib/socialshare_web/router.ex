@@ -27,8 +27,12 @@ defmodule SocialshareWeb.Router do
     get "/", PrivateController, :index
     
     get "/:provider", PrivateController, :request
-    get "/:provider/callback", PrivateController, :callback
-    post "/:provider/callback", PrivateController, :callback
+    get "/google/callback", PrivateController, :google_callback
+    post "/google/callback", PrivateController, :google_callback
+    get "/linkedin/callback", PrivateController, :linkedin_callback
+    post "/linkedin/callback", PrivateController, :linkedin_callback
+#    get "/:provider/callback", PrivateController, :callback
+#    post "/:provider/callback", PrivateController, :callback
     delete "/logout", PrivateController, :delete
 
     resources "/users", UserController
