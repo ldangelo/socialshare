@@ -34,7 +34,9 @@ defmodule SocialshareWeb.PrivateController do
     case UserFromAuth.find_or_create(auth) do
       {:ok, user} ->
         if Accounts.find_user_by_email(user.email) == nil do
-          Accounts.create_user(%{admin: false, name: user.name, email: user.email})
+          case Accounts.create_user(%{admin: false, name: user.name, email: user.email}) do
+            {:error, reason} -> Logger.debug(reason)
+          end
         end
         
         conn
@@ -42,6 +44,8 @@ defmodule SocialshareWeb.PrivateController do
         |> put_session(:current_user, user)
         |> redirect(to: "/")
       {:error, reason} ->
+        Logger.debug(reason)
+
         conn
         |> put_flash(:error, reason)
         |> redirect(to: "/")
@@ -69,6 +73,8 @@ defmodule SocialshareWeb.PrivateController do
         |> put_session(:current_linkedin, linkedin)
         |> redirect(to: "/")
       {:error, reason} ->
+        Logger.debug(reason)
+
         conn
         |> put_flash(:error, reason)
         |> redirect(to: "/")
