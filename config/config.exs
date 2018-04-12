@@ -19,6 +19,7 @@ config :socialshare, SocialshareWeb.Endpoint,
 
 # Configures Elixir's Logger
 config :logger, :console,
+  backends: [:console],
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 

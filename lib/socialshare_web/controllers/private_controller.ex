@@ -55,17 +55,24 @@ defmodule SocialshareWeb.PrivateController do
   def linkedin_callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     require IEx
 
+    Logger.debug "LinkedInCallback #{inspect(auth)}"
+
     case LinkedInFromAuth.find_or_create(auth) do
       {:ok, linkedin} -> 
         if Accounts.find_linkedin_by_email(linkedin.email) == nil do
-          
-          expiration = Timex.local
-          expiration = Timex.shift(expiration, milliseconds: linkedin.expiration)
-          
-          case   Accounts.create_linkedin(%{name: linkedin.name, email: linkedin.email, token: linkedin.token, expiration: expiration, expired: false}) do
-            {:error, reason} ->
-              Logger.debug(reason)
-          end
+
+#          result = Linkedin.Server.gettoken(linkedin.token, Helpers.callback_url(conn) ) 
+#          case result do
+#            {:ok, token, expiration} -> 
+              expiration = Timex.local
+              expiration = Timex.shift(expiration, milliseconds: linkedin.expiration)
+              case   Accounts.create_linkedin(%{name: linkedin.name, email: linkedin.email, token: linkedin.token, expiration: expiration, expired: false}) do
+                {:error, reason} ->
+                  Logger.debug "Failed to create linkedin profile #{inspect(reason)}"
+              end
+#            {:error, reason} -> 
+#              Logger.debug "Failed to get authorization code #inspect(reason)"
+#          end
         end
         
         conn

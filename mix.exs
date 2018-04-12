@@ -31,7 +31,8 @@ defmodule Socialshare.Mixfile do
         :ueberauth,
         :ueberauth_google,
         :ueberauth_linkedin,
-        :timex
+        :timex,
+        :httpotion
       ]
     ]
   end
@@ -59,7 +60,8 @@ defmodule Socialshare.Mixfile do
       {:ja_serializer, "~> 0.13.0"},
       {:guardian, "~> 0.14.2"},
       {:timex, "~> 3.0"},
-      {:timex_ecto, "~> 3.0"}
+      {:timex_ecto, "~> 3.0"},
+      {:httpotion, "~> 3.1.0"}
       
     ]
   end

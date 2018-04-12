@@ -14,6 +14,7 @@ defmodule Socialshare.Application do
       supervisor(SocialshareWeb.Endpoint, []),
       # Start your own worker by calling: Socialshare.Worker.start_link(arg1, arg2, arg3)
       # worker(Socialshare.Worker, [arg1, arg2, arg3]),
+      supervisor(Linkedin.Supervisor, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
