@@ -35,7 +35,7 @@ defmodule Linkedin.Server do
 #    [comment: Enum.join([post.url,post.comment]," "), [visability: [code: , anyone: ]
   end
 
-  def get_headers(post, token) do
+  def get_headers(token) do
     [
       Authorization: Enum.join(["Bearer",token]," "),
       "Content-Type": "application/json",
@@ -47,17 +47,17 @@ defmodule Linkedin.Server do
     clientId = ""
     clientSecret = ""
 
-    response = HTTPotion.post "https://api.linkedin.com/oauth/v2/accessToken", [body: URI.encode_www_form(Enum.concat(["grant_type=authorization_code&code=",code,"&redirect_url=",redirectUrl,"&client_id=",clientId,"&client_secret=",clientSecret]), headers: ["Content-Type": "application/x-www-form-urlencoded"])]
+    response = HTTPotion.post "https://api.linkedin.com/oauth/v2/accessToken", [body: URI.encode_www_form(Enum.concat(["grant_type=authorization_code&code=",code,"&redirect_url=",redirectUrl,"&client_id=",clientId,"&client_secret=",clientSecret])), headers: ["Content-Type": "application/x-www-form-urlencoded"]]
 
-    if HTTPotion.Response.success?(response) do
+    case HTTPotion.Response.success?(response) do
+      true ->
       Logger.debug "Authorization token successfull: #{inspect(response)}"
       json = Poison.decode!(response.body)
       ret = {:ok, json, json}
-    else
+      _ ->
       Logger.debug "Authorization token failed: #{inspect(response)}"
       ret = {:error, response.status_code}
     end
-    ret
   end
 
   # Loop through all the linkedin records sharing this article to each
@@ -70,9 +70,9 @@ defmodule Linkedin.Server do
     
     Enum.each Socialshare.Accounts.list_linkedin(), fn linkedin -> 
       Logger.debug "Sharing body: #{inspect(get_body(post))}"
-      Logger.debug "Sharing headers: #{inspect(get_headers(post,linkedin.token))}"
+      Logger.debug "Sharing headers: #{inspect(get_headers(linkedin.token))}"
       Logger.debug " "
-      response = HTTPotion.post "https://api.linkedin.com/v1/people/~/shares", [body: get_body(post), headers: get_headers(post,linkedin.token)]
+      response = HTTPotion.post "https://api.linkedin.com/v1/people/~/shares", [body: get_body(post), headers: get_headers(linkedin.token)]
       Logger.debug "Sharing response: #{inspect(response)}"
     end
     {:reply, %{}, opts}
