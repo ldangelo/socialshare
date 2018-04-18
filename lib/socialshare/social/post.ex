@@ -5,9 +5,14 @@ defmodule Socialshare.Social.Post do
 
   schema "posts" do
     field :comment, :string
+    field :description, :string
+    field :image, :string
     field :shared, :boolean, default: false
+    field :title, :string
+    field :author, :string
     field :url, :string
-
+    field :pubdate, :utc_datetime
+    
     timestamps()
   end
 

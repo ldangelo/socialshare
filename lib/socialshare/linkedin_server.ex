@@ -31,7 +31,12 @@ defmodule Linkedin.Server do
   end
 
   def get_body(post) do
-    Poison.encode!(%{"comment" => Enum.join([post.url,post.comment]," "),"visibility" => %{"code" => "anyone"}})
+    Poison.encode!(%{"comment" => post.comment,
+                     "content" => %{"title" => post.title,
+                                    "description" => post.description,
+                                    "submitted-url" => post.url,
+                                   "sutmitted-image" => post.image},
+                     "visibility" => %{"code" => "anyone"}})
 #    [comment: Enum.join([post.url,post.comment]," "), [visability: [code: , anyone: ]
   end
 
@@ -74,6 +79,9 @@ defmodule Linkedin.Server do
       Logger.debug " "
       response = HTTPotion.post "https://api.linkedin.com/v1/people/~/shares", [body: get_body(post), headers: get_headers(linkedin.token)]
       Logger.debug "Sharing response: #{inspect(response)}"
+
+      #
+      # TODO: If the response is 'ok' mark post as shared 
     end
     {:reply, %{}, opts}
   end

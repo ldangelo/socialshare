@@ -7,7 +7,7 @@ defmodule Socialshare.Controller do
   end
 
   def __action__(controller, conn) do
-    args = [conn, conn.params, conn.assigns[:current_user] || :guest]
+    args = [conn, conn.params, conn.assigns[:current_user]]
     apply(controller, Phoenix.Controller.action_name(conn), args)
   end
 end

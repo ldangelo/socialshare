@@ -1,6 +1,6 @@
 defmodule SocialshareWeb.PostController do
   use SocialshareWeb, :controller
-  use Socialshare.Controller
+#  use Socialshare.Controller
 
   alias Socialshare.Social
   alias Socialshare.Social.Post

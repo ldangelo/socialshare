@@ -1,0 +1,6 @@
+<div class="card"  stype="width: 600px" >
+    <div class="card-divider" >
+        <%= @post.url %>
+    </div>
+    <div class="card-section" ><%= @post.comment %></div>
+</div>
