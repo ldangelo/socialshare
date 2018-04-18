@@ -11,7 +11,7 @@ defmodule Socialshare.Social.Post do
     field :title, :string
     field :author, :string
     field :url, :string
-    field :pubdate, :utc_datetime
+    field :pubdate, Timex.Ecto.DateTime
     
     timestamps()
   end
@@ -19,7 +19,8 @@ defmodule Socialshare.Social.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:url, :comment, :shared])
+    |> cast(attrs, [:comment, :description, :image, :shared, :title, :author, :url, :pubdate])
     |> validate_required([:url, :comment, :shared])
+    |> unique_constraint(:url)
   end
 end

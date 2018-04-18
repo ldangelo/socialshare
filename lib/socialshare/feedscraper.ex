@@ -10,7 +10,7 @@ defmodule SocialshareWeb.FeedScraper do
     Enum.each posts, fn item ->
       article = Scrape.article item[:url]
 
-      post = %Post{image: article.image,
+      post = %{image: article.image,
                    description: article.description,
                    title: article.title,
                    url: item[:url],
@@ -18,8 +18,9 @@ defmodule SocialshareWeb.FeedScraper do
                    pubdate: item[:pubdate],
                    comment: "More exciting news from FortiumPartners!",
                    shared: false}
-   
+
       Logger.info "#{inspect(post)}"
+      Socialshare.Social.create_post(post)
     end
   end
 

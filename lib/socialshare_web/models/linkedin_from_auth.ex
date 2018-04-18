@@ -33,7 +33,7 @@ defmodule LinkedInFromAuth do
   end
 
   defp basic_info(auth) do
-    %{id: auth.uid, name: name_from_auth(auth), email: email_from_auth(auth), token: token_from_auth(auth), expiration: expiration_from_auth(auth)}
+    %{id: auth.uid, name: name_from_auth(auth), email: email_from_auth(auth), token: token_from_auth(auth), expiration: expiration_from_auth(auth), linkedinid: linkedinid_from_auth(auth)}
   end
 
   defp name_from_auth(auth) do
@@ -50,6 +50,11 @@ defmodule LinkedInFromAuth do
     end
   end
 
+  defp linkedinid_from_auth(auth) do
+    if auth.extra.raw_info.user["id"] do
+      auth.extra.raw_info.user["id"]
+    end
+  end
   defp email_from_auth(auth) do
     if auth.info.email do
       auth.info.email

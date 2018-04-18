@@ -14,5 +14,7 @@ defmodule Socialshare.Repo.Migrations.CreatePosts do
 
       timestamps()
     end
+
+    create unique_index(:posts, [:url])
   end
 end

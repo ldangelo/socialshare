@@ -2,7 +2,7 @@ defmodule Socialshare.Social do
   @moduledoc """
   The Social context.
   """
-
+  require Logger
   import Ecto.Query, warn: false
   alias Socialshare.Repo
 
@@ -53,7 +53,8 @@ defmodule Socialshare.Social do
     case changeset = %Post{}
     |> Post.changeset(attrs)
     |> Repo.insert() do
-      {:ok, post} -> Linkedin.Server.share(post)
+      {:ok, post}    -> Linkedin.Server.share(post)
+      {:error, post} -> Logger.debug "Failed to insert post"
     end
 
     changeset

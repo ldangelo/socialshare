@@ -1,6 +1,7 @@
 defmodule SocialshareWeb.FeedScraperScheduler do
   use GenServer
 
+  alias SocialshareWeb.FeedScraper
   require Logger
 
   def start_link do
@@ -19,7 +20,7 @@ defmodule SocialshareWeb.FeedScraperScheduler do
   end
 
   defp scrape_feed() do
-    Logger.info "Scraping feed"
+   FeedScraper.scrape_feed System.get_env("FEED_URL") 
   end
 
   defp schedule_work() do

@@ -54,25 +54,24 @@ defmodule SocialshareWeb.PrivateController do
   
   def linkedin_callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     require IEx
-
+    IEx.pry
+   
     Logger.debug "LinkedInCallback #{inspect(auth)}"
 
     case LinkedInFromAuth.find_or_create(auth) do
       {:ok, linkedin} -> 
-        if Accounts.find_linkedin_by_email(linkedin.email) == nil do
-
-#          result = Linkedin.Server.gettoken(linkedin.token, Helpers.callback_url(conn) ) 
-#          case result do
-#            {:ok, token, expiration} -> 
-              expiration = Timex.local
-              expiration = Timex.shift(expiration, milliseconds: linkedin.expiration)
-              case   Accounts.create_linkedin(%{name: linkedin.name, email: linkedin.email, token: linkedin.token, expiration: expiration, expired: false}) do
-                {:error, reason} ->
-                  Logger.debug "Failed to create linkedin profile #{inspect(reason)}"
-              end
-#            {:error, reason} -> 
-#              Logger.debug "Failed to get authorization code #inspect(reason)"
-#          end
+        found = Accounts.find_linkedin_by_email(linkedin.email)
+        if found == nil do
+          expiration = Timex.local
+          expiration = Timex.shift(expiration, milliseconds: linkedin.expiration)
+          case   Accounts.create_linkedin(%{name: linkedin.name, email: linkedin.email, token: linkedin.token, expiration: expiration, expired: false, linkedinid: linkedin.linkedinid}) do
+            {:error, reason} -> Logger.debug "Failed to create linkedin profile #{inspect(reason)}"
+            {:ok, linkedin}  -> Logger.debug "Successfully created linkedin profile"
+          end
+        else
+          expiration = Timex.from_unix(linkedin.expiration)
+#          expiration = Timex.shift(Timex.local, millisecionts: linkedin.expiration)
+          Accounts.update_linkedin(found, %{id: found.id, name: linkedin.name, email: linkedin.email, token: linkedin.token, expiration: expiration, expired: false, linkedinid: linkedin.linkedinid})
         end
         
         conn

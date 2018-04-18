@@ -8,9 +8,11 @@ defmodule Socialshare.Repo.Migrations.CreateLinkedin do
       add :token, :string, size: 1024
       add :expired, :boolean, default: false, null: false
       add :expiration, :date
-
+      add :linkedinid, :string
       timestamps()
     end
 
+    create unique_index(:linkedin, [:linkedinid])
+    create unique_index(:linkedin, [:email])
   end
 end
