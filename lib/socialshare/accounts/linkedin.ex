@@ -9,14 +9,16 @@ defmodule Socialshare.Accounts.Linkedin do
     field :expired, :boolean, default: false
     field :name, :string
     field :token, :string, size: 1024
-
+    field :linkedinid, :string
     timestamps()
   end
 
   @doc false
   def changeset(linkedin, attrs) do
     linkedin
-    |> cast(attrs, [:name, :email, :token, :expired, :expiration])
+    |> cast(attrs, [:name, :email, :token, :expired, :expiration, :linkedinid])
     |> validate_required([:name, :email, :token, :expired, :expiration])
+    |> unique_constraint(:linkedinid)
+    |> unique_constraint(:email)
   end
 end

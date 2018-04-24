@@ -1,5 +1,13 @@
-<div class="jumbotron">
-  <h2>Welcome to FortiumPartners SocialShare</h2>
-  <p class="lead">A social sharing application that will </br>automatically share Fortiums Blog Posts to your LinkedIn network</p>
-</div>
- 
+<div class="grid-container fluid">
+    <div class="grid-x grid-margin-x">
+        <div class="cell small-2" ></div>
+        <div class="cell small-6" >
+            <div class="card" style="width: 600px">
+                <div class="card-divider" >
+                    Welcome to FortiumPartners SocialShare
+                </div>
+                <div class="card-section">A social sharing application that will </br>automatically share Fortiums Blog Posts to your LinkedIn network</div>
+            </div>
+        </div>
+    </div>
+</div> 

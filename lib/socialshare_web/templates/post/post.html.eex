@@ -1,0 +1,13 @@
+<a href="<%= @post.url %>">
+<div class="card"  style="width: 600px" >
+    <div class="card-section" >
+        <h4>Posted by <%=  @post.author %></h4>
+    </div>
+    <div class="card-section" >
+        <%= @post.comment %>
+    </div>
+    <div class="card-section" ><image src="<%= @post.image %>"></image>
+    </div>
+    <div class="card-section" ><h3><%= @post.title %></h3></div>
+</div>
+</a>

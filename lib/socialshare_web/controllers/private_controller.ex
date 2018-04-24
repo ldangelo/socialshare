@@ -1,11 +1,8 @@
 defmodule SocialshareWeb.PrivateController do
-  require Logger
   use SocialshareWeb, :controller
   plug Ueberauth
 
-  import Ecto.Query
-  import Socialshare.Repo
-  alias Socialshare.Accounts.User
+  require Logger
   alias Socialshare.Accounts
   alias Ueberauth.Strategy.Helpers
 
@@ -51,40 +48,44 @@ defmodule SocialshareWeb.PrivateController do
         |> redirect(to: "/")
     end
   end   
-  
-  def linkedin_callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-    require IEx
 
-    Logger.debug "LinkedInCallback #{inspect(auth)}"
+  defp linkedin_create_or_update(nil, linkedin) do
+    expiration = Timex.local
+    expiration = Timex.shift(expiration, milliseconds: linkedin.expiration)
+    case   Accounts.create_linkedin(%{name: linkedin.name, email: linkedin.email, token: linkedin.token, expiration: expiration, expired: false, linkedinid: linkedin.linkedinid}) do
+      {:error, reason} -> Logger.debug "Failed to create linkedin profile #{inspect(reason)}"
+      {:ok, _ }  -> Logger.debug "Successfully created linkedin profile"
+    end
+   
+  end
 
-    case LinkedInFromAuth.find_or_create(auth) do
-      {:ok, linkedin} -> 
-        if Accounts.find_linkedin_by_email(linkedin.email) == nil do
+  defp linkedin_create_or_update(found, linkedin) do
+    expiration = Timex.from_unix(linkedin.expiration)
+    #          expiration = Timex.shift(Timex.local, millisecionts: linkedin.expiration)
+    Accounts.update_linkedin(found, %{id: found.id, name: linkedin.name, email: linkedin.email, token: linkedin.token, expiration: expiration, expired: false, linkedinid: linkedin.linkedinid})
+   
+  end
 
-#          result = Linkedin.Server.gettoken(linkedin.token, Helpers.callback_url(conn) ) 
-#          case result do
-#            {:ok, token, expiration} -> 
-              expiration = Timex.local
-              expiration = Timex.shift(expiration, milliseconds: linkedin.expiration)
-              case   Accounts.create_linkedin(%{name: linkedin.name, email: linkedin.email, token: linkedin.token, expiration: expiration, expired: false}) do
-                {:error, reason} ->
-                  Logger.debug "Failed to create linkedin profile #{inspect(reason)}"
-              end
-#            {:error, reason} -> 
-#              Logger.debug "Failed to get authorization code #inspect(reason)"
-#          end
-        end
+  defp handle_auth({:ok, linkedin}, conn) do
+         linkedin_create_or_update Accounts.find_linkedin_by_email(linkedin.email), linkedin
         
         conn
         |> put_flash(:info, "Successfully authenticated.")
         |> put_session(:current_linkedin, linkedin)
         |> redirect(to: "/")
-      {:error, reason} ->
-        Logger.debug(reason)
+  end
 
-        conn
-        |> put_flash(:error, reason)
-        |> redirect(to: "/")
-    end
+  defp handle_auth({:error, reason}, conn) do
+    Logger.debug(reason)
+
+    conn
+    |> put_flash(:error, reason)
+    |> redirect(to: "/")
+  end
+  
+  def linkedin_callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
+    Logger.debug "LinkedInCallback #{inspect(auth)}"
+
+    handle_auth LinkedInFromAuth.find_or_create(auth), conn
   end 
 end

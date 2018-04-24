@@ -61,7 +61,9 @@ defmodule Socialshare.Mixfile do
       {:guardian, "~> 0.14.2"},
       {:timex, "~> 3.0"},
       {:timex_ecto, "~> 3.0"},
-      {:httpotion, "~> 3.1.0"}
+      {:httpotion, "~> 3.1.0"},
+      {:scrape, "~> 2.0"},
+      {:html5ever, "~> 0.5.0", override: true}
       
     ]
   end
