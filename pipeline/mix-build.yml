@@ -10,5 +10,5 @@ inputs:
   - name: resource-socialshare
 
 run:
-  path: ./bin/build.sh 
+  path: pipeline/build.sh 
   dir: resource-socialshare
