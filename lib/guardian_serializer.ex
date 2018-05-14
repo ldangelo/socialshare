@@ -1,5 +1,5 @@
 defmodule Socialshare.GuardianSerializer do
-  @behavior Guardian.Serializer
+  @behaviour Guardian.Serializer
 
   alias Socialshare.Repo
   alias Socialshare.Accounts.User

@@ -9,6 +9,16 @@ defmodule Socialshare.Social do
   alias Socialshare.Social.Post
 
   @doc """
+  Returns a tuple:
+
+  {:ok, post} when found
+  {:error, nil} when not found
+  """
+  def find_post_by_url(url) do
+    Post |> Repo.get_by(url: url)
+  end
+  
+  @doc """
   Returns the list of posts.
 
   ## Examples
