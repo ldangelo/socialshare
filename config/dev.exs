@@ -56,3 +56,5 @@ config :socialshare, Socialshare.Repo,
   database: "socialshare_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :socialshare, :feed_api, SocialshareWeb.FeedScraperApi

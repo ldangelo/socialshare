@@ -73,7 +73,7 @@ defmodule Linkedin.Server do
   def handle_call({:share, post}, _from, opts) do
     Logger.debug fn -> "Sharing post to linkedin #{inspect(post)}" end
 
-    if Timex.before?(post.pubdate, Timex.shift(Timex.today, days: 1)) do
+#    if Timex.before?(post.pubdate, Timex.shift(Timex.today, days: 1)) do
       Enum.each Socialshare.Accounts.list_linkedin(), fn linkedin -> 
         Logger.debug "Sharing body: #{inspect(get_body(post))}"
         Logger.debug "Sharing headers: #{inspect(get_headers(linkedin.token))}"
@@ -84,9 +84,9 @@ defmodule Linkedin.Server do
         #
         # TODO: If the response is 'ok' mark post as shared 
       end
-    else
-      Logger.info "Post is not being shared because the publication data is before today"
-    end
+#    else
+#      Logger.info "Post is not being shared because the publication data is before today"
+#    end
     {:reply, %{}, opts}
   end
 
