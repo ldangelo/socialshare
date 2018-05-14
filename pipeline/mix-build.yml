@@ -12,3 +12,4 @@ inputs:
 run:
   path: mix
   args: ["compile"]
+  dir: resource-socialshare
