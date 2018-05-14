@@ -11,5 +11,10 @@ inputs:
 
 run:
   path: mix
-  args: ["do deps.get, compile"]
+  args: ["deps.get"]
+  dir: resource-socialshare
+
+run:
+  path: mix
+  args: ["compile"]
   dir: resource-socialshare
