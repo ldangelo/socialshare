@@ -10,11 +10,5 @@ inputs:
   - name: resource-socialshare
 
 run:
-  path: mix
-  args: ["deps.get"]
-  dir: resource-socialshare
-
-run:
-  path: mix
-  args: ["compile"]
+  path: ./bin/build.sh 
   dir: resource-socialshare
