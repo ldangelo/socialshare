@@ -5,7 +5,7 @@ defmodule Socialshare.Mixfile do
     [
       app: :socialshare,
       version: "0.0.1",
-      elixir: "~> 1.4",
+      elixir: "~> 1.6",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
@@ -63,8 +63,7 @@ defmodule Socialshare.Mixfile do
       {:timex_ecto, "~> 3.0"},
       {:httpotion, "~> 3.1.0"},
       {:scrape, "~> 2.0"},
-      {:html5ever, "~> 0.5.0", override: true}
-      
+      {:html5ever, "~> 0.5.0", override: true, git: "http://github.com/hansihe/html5ever_elixir.git"}
     ]
   end
 
