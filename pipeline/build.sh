@@ -1,5 +1,5 @@
 #!/bin/bash
-curl https://sh.rustup.rs -sSf | sh
+apt add -no-cache rust cargo
 
 mix deps.get
 mix compile
