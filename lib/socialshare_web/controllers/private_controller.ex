@@ -32,6 +32,7 @@ defmodule SocialshareWeb.PrivateController do
       {:ok, user} ->
         if Accounts.find_user_by_email(user.email) == nil do
           case Accounts.create_user(%{admin: false, name: user.name, email: user.email}) do
+            {:ok, user} -> Logger.debug "User created"
             {:error, reason} -> Logger.debug(reason)
           end
         end
