@@ -11,4 +11,5 @@ jobs:
       - get: resource-socialshare
         trigger: true
       - task: mix-build
+        privileged: true
         file: resource-socialshare/pipeline/mix-build.yml
