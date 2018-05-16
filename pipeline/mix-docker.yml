@@ -1,0 +1,13 @@
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: bitwalker/alpine-elixir-phoenix
+
+inputs:
+  - name: resource-socialshare
+
+run:
+  path: pipeline/docker.sh 
+  dir: resource-socialshare

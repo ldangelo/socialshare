@@ -20,6 +20,13 @@ defmodule Socialshare.Mixfile do
   def application do
     [
       mod: {Socialshare.Application, []},
+      included_applications: [
+        :guardian,
+        :html5ever,
+        :ja_serializer,
+        :codepagex,
+        :timex_ecto
+      ],
       applications: [
         :phoenix,
         :phoenix_html,
@@ -32,7 +39,8 @@ defmodule Socialshare.Mixfile do
         :ueberauth_google,
         :ueberauth_linkedin,
         :timex,
-        :httpotion
+        :httpotion,
+        :scrape
       ]
     ]
   end
@@ -46,6 +54,7 @@ defmodule Socialshare.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:distillery, "~> 1.0"},
       {:phoenix, "~> 1.3.0"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},

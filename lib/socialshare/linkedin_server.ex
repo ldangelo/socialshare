@@ -35,7 +35,7 @@ defmodule Linkedin.Server do
                      "content" => %{"title" => post.title,
                                     "description" => post.description,
                                     "submitted-url" => post.url,
-                                   "sutmitted-image" => post.image},
+                                   "submitted-image-url" => post.image},
                      "visibility" => %{"code" => "anyone"}})
 #    [comment: Enum.join([post.url,post.comment]," "), [visability: [code: , anyone: ]
   end
