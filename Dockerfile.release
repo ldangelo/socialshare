@@ -1,0 +1,21 @@
+FROM bitwalker/alpine-elixir-phoenix
+ENV DEBIAN_FRONTEND=noninteractive
+ENV GOOGLE_CLIENT_ID=
+ENV GOOGLE_CLIENT_SECRET=
+ENV GOOGLE_REDIRECT_URI=/auth/private/callback
+ENV LINKEDIN_CLIENT_ID=
+ENV LINKEDIN_CLIENT_SECRET=
+ENV SCRAPETIMER=6000000
+ENV FEED_URL=https://blog.fortiumpartners.com/feed
+ENV HOST=localhost
+ENV SECRET_KEY_BASE=xVS5dckkBOXqwgPb2H6e3UsyvGcsHDfDkpQ4hKzDPX8ozVVvBpAo320eeQ4aSURf
+ENV DB_HOSTNAME=localhost
+ENV DB_USERNAME=
+ENV DB_PASSWORD=
+ENV DB_NAME=socialshare
+EXPOSE 8000
+ENV PORT=8000 MIX_ENV=prod REPLACE_OS_VARS=true SHELL=/bin/bash
+WORKDIR /app
+COPY ./socialshare.tar.gz ./
+RUN tar xfz socialshare.tar.gz
+ENTRYPOINT ["bin/socialshare"]

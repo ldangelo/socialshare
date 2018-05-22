@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test
+  annotations:
+    kubernetes.io/ingress.class: nginx
+
+spec:
+  rules:
+    - host: dev.sample.com
+      http:
+        paths:
+          - path: /concourse
+            backend:
+              serviceName: development-web
+              servicePort: 8080
+          - path: /
+            backend:
+              serviceName: drone-drone
+              servicePort: 80
