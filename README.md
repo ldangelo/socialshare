@@ -1,6 +1,6 @@
 # Socialshare
 
-Elixir application to automatically share newly posted medium articles to linkedin.
+Elixir application to automatically share newly posted medium articles to linkedin.  It's primary purpose is to enable corporate advocacy.
 
 ## How does it work?
 
