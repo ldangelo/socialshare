@@ -1,6 +1,10 @@
+workspace:
+  base: /socialshare
+  path: src
+  
 pipeline:
   build:
-    image: ldangelo/elixir-phoenix
+    image: ldangelo/elixir-phoenix:1.0
     commands:
       - mix local.hex --force
       - mix local.rebar --force

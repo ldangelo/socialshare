@@ -4,7 +4,7 @@ Elixir application to automatically share newly posted medium articles to linked
 
 ## How does it work?
 
-The application authenticates uses through google.  Once a user is authenticated they can authorize the application to post articles on linkedin.  The application scrapes an RSS feed and when a new article appears it will automatically share the article for all users.
+The application authenticates users through google.  Once a user is authenticated they can authorize the application to post articles on linkedin.  The application scrapes an RSS feed and when a new article appears it will automatically share the article for all users.
 
 ## SETUP
 
