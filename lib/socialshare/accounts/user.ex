@@ -1,7 +1,7 @@
 defmodule Socialshare.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
-
+  
 
   schema "users" do
     field :admin, :boolean, default: false
@@ -16,5 +16,6 @@ defmodule Socialshare.Accounts.User do
     user
     |> cast(attrs, [:name, :email, :admin])
     |> validate_required([:name, :email, :admin])
+    |> unique_constraint(:email)
   end
 end

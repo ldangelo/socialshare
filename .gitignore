@@ -25,3 +25,8 @@ npm-debug.log
 # secrets files as long as you replace their contents by environment
 # variables.
 /config/*.secret.exs
+/mix.lock
+/node_modules/.bin/extract-zip
+/assets/.brunch-config.js.swp
+/package-lock.json
+/.env

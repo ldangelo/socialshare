@@ -51,8 +51,10 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :socialshare, Socialshare.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "concourse_user",
+  password: "concourse_pass",
   database: "socialshare_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :socialshare, :feed_api, SocialshareWeb.FeedScraperApi

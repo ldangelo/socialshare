@@ -1,0 +1,11 @@
+<div class="grid-container fluid" >
+    <%= for post <- @posts do %>
+    <div class="grid-x grid-margin-x">
+        <div class="cell small-2" > </div>
+        <div class="cell small-6" >
+            <%= render "post.html", post: post %>
+        </div>
+    </div>
+    <% end %>
+</div>
+<span><%= link "New Post", to: post_path(@conn, :new) %></span>

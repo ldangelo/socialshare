@@ -15,8 +15,12 @@ use Mix.Config
 # which you typically run after static files are built.
 config :socialshare, SocialshareWeb.Endpoint,
   load_from_system_env: true,
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  http: [port: "${PORT}"],
+  url: [host: "${HOST}", port: "${PORT}"],
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  server: true,
+  root: ".",
+  version: Application.spec(:socialshare, :vsn)
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -61,4 +65,15 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
-import_config "prod.secret.exs"
+config :socialshare, SocialshareWeb.Endpoint,
+  secret_key_base: "${SECRET_KEY_BASE}"
+#  secret_key_base: "xVS5dckkBOXqwgPb2H6e3UsyvGcsHDfDkpQ4hKzDPX8ozVVvBpAo320eeQ4aSURf"
+
+# Configure your database
+config :socialshare, Socialshare.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  hostname: "${DB_HOSTNAME}",
+  username: "${DB_USERNAME}",
+  password: "${DB_PASSWORD}",
+  database: "${DB_NAME}",
+  pool_size: 15

@@ -1,8 +1,21 @@
 defmodule SocialshareWeb.ErrorView do
   use SocialshareWeb, :view
+ 
+  def render("401.html", _assigns) do
+    "Unauthorized"
+  end
 
+
+  def render("403.html", _assigns) do
+    "Forbidden"
+  end
+  
   def render("404.html", _assigns) do
     "Page not found"
+  end
+
+  def render("422.html", _assigns) do
+    "Unprocessable entity"
   end
 
   def render("500.html", _assigns) do

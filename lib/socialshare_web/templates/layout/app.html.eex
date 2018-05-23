@@ -7,21 +7,29 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Socialshare!</title>
+    <title>Socialshare!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
     <div class="container">
       <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
+          <div class="top-bar">
+              <div class="top-bar-left" >
+                  <ul class="vertical medium-horizontal menu">
+                      <li><a href="/"><i class="fi-list"></i><span>Home</span></a></li>
+                      <%= if @current_user do %>
+                          <li><a href="/"><i class="fi-list"></i><span>Settings</span></a></li>
+                          <li><a href="/posts"><i class="fi-list"></i><span>Posts</span></a></li>
+                          <li><%= link "Logout", to: private_path(@conn, :delete), method: :delete, class: "btn" %></li>
+                          <li><a href="/auth/linkedin"> <i class="fi-list"></i> <span>Authenticate with LinkedIn</span> </a> </li>
+                      <% else %>
+                          <li><a href="/auth/google"> <i class="fi-list"></i> Sign in with Google </a> </li>
+                      <% end %>
+                  </ul>
+              </div>
+          </div>
       </header>
-
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
@@ -31,5 +39,11 @@
 
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script>
+        $(document).ready(function() {
+        console.log("jQuery is working");
+        } );
+     $(document).foundation();
+    </script>
   </body>
 </html>

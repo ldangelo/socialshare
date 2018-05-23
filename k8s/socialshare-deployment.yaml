@@ -1,0 +1,65 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: socialshare-deployment
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: socialshare
+    spec:
+      containers:
+        - name: socialshare
+          image: socialshare:release
+          ports:
+            - containerPort: 8000
+          args: ["foreground"]
+          env:
+            - name: HOST
+              value: "example.com"
+            - name: SECRET_KEY_BASE
+              valueFrom: 
+                secretKeyRef:
+                  name: secrets
+                  key: secret_key_base
+              value: "highlysecretkey"
+            - name: DB_USERNAME
+              valueFrom: 
+                secretKeyRef:
+                  name: secrets
+                  key: db_username
+            - name: DB_PASSWORD
+              valueFrom: 
+                secretKeyRef:
+                  name: secrets
+                  key: db_password
+            - name: GOOGLE_CLIENT_ID
+              valueFrom: 
+                secretKeyRef:
+                  name: secrets
+                  key: google_client_id
+            - name: GOOGLE_CLIENT_SECRET
+              valueFrom: 
+                secretKeyRef:
+                  name: secrets
+                  key: google_client_secret
+            - name: GOOGLE_REDIRECT_URL
+              valueFrom: 
+                secretKeyRef:
+                  name: secrets
+                  key: google_redirect_url
+            - name: LINKEDIN_CLIENT_ID 
+              valueFrom: 
+                secretKeyRef:
+                  name: secrets
+                  key: linkedin_client_id
+            - name: LINKEDIN_CLIENT_SECRET 
+              valueFrom: 
+                secretKeyRef:
+                  name: secrets
+                  key: linkedin_client_SECRET
+            - name: DB_NAME
+              value: "socialshare"
+            - name: DB_HOSTNAME
+              value: "localhost"

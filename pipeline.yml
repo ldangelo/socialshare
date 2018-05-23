@@ -1,0 +1,15 @@
+resources:
+  - name: resource-socialshare
+    type: git
+    source:
+      uri: https://github.com/ldangelo/socialshare.git
+      branch: develop
+
+jobs:
+  - name: job-build
+    plan:
+      - get: resource-socialshare
+        trigger: true
+      - task: mix-build
+        privileged: true
+        file: resource-socialshare/pipeline/mix-build.yml

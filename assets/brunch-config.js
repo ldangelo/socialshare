@@ -47,16 +47,44 @@ exports.config = {
     babel: {
       // Do not use ES6 compiler in vendor code
       ignore: [/vendor/]
-    }
+    },
+      sass: {
+          options: {
+              includePaths: [
+                  'node_modules/foundation-sites/scss',
+              ]
+          }
+      }
+
   },
 
   modules: {
-    autoRequire: {
-      "js/app.js": ["js/app"]
-    }
+      autoRequire: {
+          "js/app.js": ["js/app"]
+      },
+      sass: {
+          options: {
+              includePaths: [
+                  'node_modules/normalize-scss/sass',
+                  'node_modules/foundation-sites/scss',
+                  'node_modules/motion-ui/src',
+                  'node_modules/font-awesome/scss'
+              ]
+          }
+      },
+      copycat: {
+          "fonts": ["node_modules/font-awesome/fonts"],
+          verbose: true,
+          onlyChanged: true
+      }
   },
 
   npm: {
-    enabled: true
+      enabled: true,
+      globals: {
+          $: 'jquery',
+          jQuery: 'jquery',
+      }
+
   }
 };

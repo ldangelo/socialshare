@@ -5,7 +5,7 @@ defmodule Socialshare.Mixfile do
     [
       app: :socialshare,
       version: "0.0.1",
-      elixir: "~> 1.4",
+      elixir: "~> 1.6",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
@@ -20,7 +20,28 @@ defmodule Socialshare.Mixfile do
   def application do
     [
       mod: {Socialshare.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      included_applications: [
+        :guardian,
+        :html5ever,
+        :ja_serializer,
+        :codepagex,
+        :timex_ecto
+      ],
+      applications: [
+        :phoenix,
+        :phoenix_html,
+        :cowboy,
+        :logger,
+        :runtime_tools,
+        :phoenix_ecto,
+        :postgrex,
+        :ueberauth,
+        :ueberauth_google,
+        :ueberauth_linkedin,
+        :timex,
+        :httpotion,
+        :scrape
+      ]
     ]
   end
 
@@ -33,6 +54,8 @@ defmodule Socialshare.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:distillery, "~> 1.0", override: true},
+      {:mix_docker, "~> 0.5.0"},
       {:phoenix, "~> 1.3.0"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
@@ -40,7 +63,17 @@ defmodule Socialshare.Mixfile do
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:ueberauth, "~> 0.4"},
+      {:ueberauth_google, "~> 0.2"},
+      {:ueberauth_linkedin, "~> 0.3"},
+      {:ja_serializer, "~> 0.13.0"},
+      {:guardian, "~> 0.14.2"},
+      {:timex, "~> 3.0"},
+      {:timex_ecto, "~> 3.0"},
+      {:httpotion, "~> 3.1.0"},
+      {:scrape, "~> 2.0"},
+      {:html5ever, "~> 0.5.0", override: true, git: "http://github.com/hansihe/html5ever_elixir.git"}
     ]
   end
 
