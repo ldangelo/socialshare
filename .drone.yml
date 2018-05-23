@@ -12,3 +12,4 @@ pipeline:
       - mix deps.compile
       - mix release --env=prod
   
+branches: [ master, develop ]
