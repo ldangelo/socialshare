@@ -4,7 +4,7 @@
 ** DONE Show 'posts'
    CLOSED: [2018-04-18 Wed 15:07]
 ** TODO Create one-to-one relationship between users and linkedin
-* TODO Remove google tables etc...
+** TODO Remove google tables etc...
 ** TODO Add 'invite' method to linkedin server
 ** TODO Add 'like' method to linkedin server
 ** DONE Add 'member id' to linkedin table/object
