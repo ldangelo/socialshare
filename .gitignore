@@ -30,3 +30,12 @@ npm-debug.log
 /assets/.brunch-config.js.swp
 /package-lock.json
 /.env
+/.dockerignore
+/.elixir_ls
+/.env.swp
+/.project
+/.projectile
+/node_modules
+/.vscode
+/rel
+
