@@ -1,6 +1,6 @@
 #!/bin/bash
 mix deps.get
-mix package
+mix compile
 mix docker.init
 mix docker.build
 
