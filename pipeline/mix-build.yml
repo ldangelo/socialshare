@@ -4,7 +4,7 @@ image_resource:
   type: docker-image
   source:
     e-mail: ldangelo@mac.com
-    repository: ldangelo/elixir-phoenix
+    repository: hub.docker.com/ldangelo/elixir-phoenix
     tag: 1.0
 
 inputs:
