@@ -4,6 +4,7 @@ image_resource:
   type: docker-image
   source:
     repository: ldangelo/elixir-phoenix
+    tag: 1.0
 
 inputs:
   - name: resource-socialshare
