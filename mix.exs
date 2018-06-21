@@ -22,9 +22,8 @@ defmodule Socialshare.Mixfile do
       mod: {Socialshare.Application, []},
       included_applications: [
         :guardian,
-        :html5ever,
         :ja_serializer,
-        :codepagex,
+#        :codepagex,
         :timex_ecto
       ],
       applications: [
@@ -39,8 +38,7 @@ defmodule Socialshare.Mixfile do
         :ueberauth_google,
         :ueberauth_linkedin,
         :timex,
-        :httpotion,
-        :scrape
+        :httpotion
       ]
     ]
   end
