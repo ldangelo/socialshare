@@ -4,10 +4,8 @@ image_resource:
   type: docker-image
   source:
     e-mail: ldangelo@mac.com
-    username: ldangelo
-    password: R64mfCxim
-    repository: hub.docker.com/ldangelo/elixir-phoenix
-    tag: 1.0
+    repository: ldangelo/elixir-phoenix
+    tag: "1.0"
 
 inputs:
   - name: resource-socialshare
