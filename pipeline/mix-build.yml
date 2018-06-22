@@ -14,3 +14,4 @@ outputs:
 
 run:
   path: socialshare/pipeline/build.sh
+  dir: socialshare
