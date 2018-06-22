@@ -4,6 +4,12 @@ resources:
     source:
       uri: https://github.com/ldangelo/socialshare.git
       branch: ((branch-name))
+  - name: elixir-phoenix
+    type: dockerimage
+    source:
+      repository: ((dockerhub-username))/elixir-phoenix
+      username: ((dockerhub-username))
+      password: ((dockerhub-password))
   - name: socialshare-docker-((build-env))
     type: dockerimage
     source:
