@@ -53,7 +53,6 @@ defmodule Socialshare.Mixfile do
   defp deps do
     [
       {:distillery, "~> 1.0", override: true},
-      {:mix_docker, "~> 0.5.0"},
       {:phoenix, "~> 1.3.0"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},

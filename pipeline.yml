@@ -1,15 +1,33 @@
 resources:
-  - name: resource-socialshare
+  - name: socialshare
     type: git
     source:
       uri: https://github.com/ldangelo/socialshare.git
-      branch: develop
+      branch: ((branch-name))
+  - name: elixir-phoenix
+    type: dockerimage
+    source:
+      repository: ((dockerhub-username))/elixir-phoenix
+      username: ((dockerhub-username))
+      password: ((dockerhub-password))
+  - name: socialshare-docker-((build-env))
+    type: dockerimage
+    source:
+      repository: ((dockerhub-username))/socialshare
+      username: ((dockerhub-username))
+      password: ((dockerhub-password))
 
 jobs:
-  - name: job-build
+  - name: build
+    public: false
+    serial: true
     plan:
-      - get: resource-socialshare
+      - get: socialshare
         trigger: true
       - task: mix-build
-        privileged: true
-        file: resource-socialshare/pipeline/mix-build.yml
+        file: socialshare/pipeline/mix-build.yml
+      - task: create-context
+        file: socialshare/pipeline/create-context.yml
+      - put: socialshare-docker-((build-env))
+        params:
+          build: context
