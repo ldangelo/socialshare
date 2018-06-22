@@ -1,6 +1,8 @@
 platform: linux
 
-image: docker:///ldangelo/elixir-phoenix
+image-resource:
+  type: docker-image
+  source: docker:///ldangelo/elixir-phoenix
 
 inputs:
   - name: socialshare
@@ -9,4 +11,4 @@ outputs:
   - name:  _build
 
 run:
-  path: pipeline/build.sh
+  path: socialshare/pipeline/build.sh
