@@ -2,7 +2,7 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source: docker:///ldangelo/elixir-phoenix
+  source: {repository: ldangelo/elixir-phoenix}
 
 inputs:
   - name: socialshare
