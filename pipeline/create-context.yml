@@ -1,5 +1,8 @@
 platform: linux
-image: docker:///busybox
+image_resource:
+  type: docker_image
+  source:
+    repository: busybox
 
 inputs:
   - name: socialshare
@@ -10,4 +13,5 @@ outputs:
 
 run:
   path: pipeline/create-context.sh
+  dir: socialshare
   
