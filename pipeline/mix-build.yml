@@ -13,5 +13,5 @@ outputs:
   - name:  _build
 
 run:
-  path: socialshare/pipeline/build.sh
+  path: pipeline/build.sh
   dir: socialshare
