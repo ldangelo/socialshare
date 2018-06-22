@@ -39,3 +39,6 @@ npm-debug.log
 node_modules/
 rel/
 
+/pipeline/dev-configuration.yaml
+/pipeline/dev-configuration.yml
+/pipeline/prod-configuration.yaml
