@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo "before mkdir"
 mkdir /tmp/app
