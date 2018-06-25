@@ -1,5 +1,7 @@
 #!/bin/sh
 
+ls ..
+
 echo "before mkdir"
 mkdir /tmp/app
 

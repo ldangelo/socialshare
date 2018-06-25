@@ -13,5 +13,5 @@ outputs:
 
 run:
   path: socialshare/pipeline/create-context.sh
-  dir: _build
+  dir: socialshare
   
