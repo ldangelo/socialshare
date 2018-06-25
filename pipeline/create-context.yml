@@ -12,6 +12,6 @@ outputs:
   - name: context
 
 run:
-  path: pipeline/create-context.sh
+  path: socialshare/pipeline/create-context.sh
   dir: _build
   
