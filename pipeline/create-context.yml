@@ -6,11 +6,12 @@ image_resource:
 
 inputs:
   - name: socialshare
+  = name: _build
 
 outputs:
   - name: context
 
 run:
   path: pipeline/create-context.sh
-  dir: socialshare
+  dir: _build
   

@@ -7,5 +7,5 @@ echo "after mkdir"
 
 ls -R
 
-cp -R _build/dev/rel/socialshare /tmp/app/socialshare 
+cp -R dev/rel/socialshare /tmp/app/socialshare 
 echo "after cp"
