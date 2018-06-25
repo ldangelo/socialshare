@@ -5,7 +5,7 @@ mkdir /tmp/app
 
 echo "after mkdir"
 
-ls -r _build
+ls -R
 
 cp -R _build/dev/rel/socialshare /tmp/app/socialshare 
 echo "after cp"
