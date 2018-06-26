@@ -11,7 +11,7 @@ resources:
 #      username: ((dockerhub-username))
 #      password: ((dockerhub-password))
   - name: socialshare-docker-((build-env))
-    type: dockerimage
+    type: docker-image
     source:
       repository: ((dockerhub-username))/socialshare
       username: ((dockerhub-username))
