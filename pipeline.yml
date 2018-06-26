@@ -31,4 +31,4 @@ jobs:
       - put: socialshare-docker-((build-env))
         params:
           inputs: app
-          build: docker
+          build: socialshare/docker
