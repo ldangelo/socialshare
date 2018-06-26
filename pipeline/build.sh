@@ -4,4 +4,4 @@ mix compile
 mix release.init
 mix release
 
-cp -R socialshare/_build app
+cp -R _build ../app
