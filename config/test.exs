@@ -15,7 +15,7 @@ config :socialshare, Socialshare.Repo,
   username: "socialshare",
   password: "socialshare",
   database: "socialshare_test",
-  hostname: "localhost",
+  hostname: "ldangelo-2.local",
   pool: Ecto.Adapters.SQL.Sandbox
 
 config :socialshare, :feed_api, SocialshareWeb.FeedScraperApi
