@@ -6,4 +6,4 @@ ls -R ..
 mkdir /tmp/app
 
 # copy the artifacts to the app directory
-cp -R _build/dev/rel/socialshare /tmp/app/socialshare 
+cp -R socialshare/_build/dev/rel/socialshare /tmp/app/socialshare 
