@@ -24,12 +24,16 @@ jobs:
     plan:
       - get: socialshare
         trigger: true
-      - task: mix-build
-        file: socialshare/pipeline/mix-build.yml
-      - task: test
-        file: socialshare/pipeline/test.yml
+      - task: update-dependencies
+        file: socialshare/pipeline/update-dependencies.yml
+      - aggregate:
+          - task: mix-build
+            file: socialshare/pipeline/mix-build.yml
+          - task: test
+            file: socialshare/pipeline/test.yml
 #      - task: create-context
 #        file: socialshare/pipeline/create-context.yml
+
       - put: socialshare-docker-((build-env))
         params:
           inputs: app
