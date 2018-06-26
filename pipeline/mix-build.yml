@@ -9,11 +9,14 @@ image_resource:
 inputs:
   - name: socialshare
 
+outputs:
+  - name: app
+
 # cache some of the outputs to speed up the build
 caches:
-  - path: node_modules
-  - path: deps
-  - path: _build
+  - path: socialshare/node_modules
+  - path: socialshare/deps
+  - path: socialshare/_build
 
 run:
   path: pipeline/build.sh
