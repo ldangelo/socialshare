@@ -9,9 +9,6 @@ image_resource:
 inputs:
   - name: socialshare
 
-outputs:
-  - name: socialshare
-
 # cache some of the outputs to speed up the build
 caches:
   - path: node_modules
