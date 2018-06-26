@@ -18,22 +18,34 @@ resources:
       password: ((dockerhub-password))
 
 jobs:
-  - name: build
+  - name: get-source
     public: false
     serial: true
     plan:
       - get: socialshare
         trigger: true
+
+  - name: update-dependencies
+    public: false
+    serial: true
+    plan:
       - task: update-dependencies
         file: socialshare/pipeline/update-dependencies.yml
+
+  - name: build-test
+    public: false
+    serial: false
+    plan:
       - aggregate:
           - task: mix-build
             file: socialshare/pipeline/mix-build.yml
           - task: test
             file: socialshare/pipeline/test.yml
-#      - task: create-context
-#        file: socialshare/pipeline/create-context.yml
 
+  - name: publish
+    public: false
+    serial: false
+    plan:
       - put: socialshare-docker-((build-env))
         params:
           inputs: app
