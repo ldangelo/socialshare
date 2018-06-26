@@ -26,8 +26,8 @@ jobs:
         trigger: true
       - task: mix-build
         file: socialshare/pipeline/mix-build.yml
-      - task: create-context
-        file: socialshare/pipeline/create-context.yml
+#      - task: create-context
+#        file: socialshare/pipeline/create-context.yml
       - put: socialshare-docker-((build-env))
         params:
-          build: context
+          build: app

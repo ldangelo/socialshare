@@ -38,7 +38,9 @@ defmodule Socialshare.Mixfile do
         :ueberauth_google,
         :ueberauth_linkedin,
         :timex,
-        :httpotion
+        :httpotion,
+        :feeder_ex,
+        :parse_trans
       ]
     ]
   end
