@@ -12,10 +12,10 @@ config :logger, level: :warn
 # Configure your database
 config :socialshare, Socialshare.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "socialshare",
-  password: "socialshare",
+  username: "concourse",
+  password: "concourse",
   database: "socialshare_test",
-  hostname: "ldangelo-2.local",
+  hostname: "concourse-postgresql",
   pool: Ecto.Adapters.SQL.Sandbox
 
 config :socialshare, :feed_api, SocialshareWeb.FeedScraperApi
