@@ -4,10 +4,10 @@ resources:
     source:
       uri: https://github.com/ldangelo/socialshare.git
       branch: ((branch-name))
-#  - name: elixir-phoenix
+#  - name: socialshare-docker-((build-env))
 #    type: dockerimage
 #    source:
-#      repository: ((dockerhub-username))/elixir-phoenix
+#      repository: busybox
 #      username: ((dockerhub-username))
 #      password: ((dockerhub-password))
   - name: socialshare-docker-((build-env))
@@ -30,4 +30,5 @@ jobs:
 #        file: socialshare/pipeline/create-context.yml
       - put: socialshare-docker-((build-env))
         params:
-          build: app
+          inputs: app
+          build: docker

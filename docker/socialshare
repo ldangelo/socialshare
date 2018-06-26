@@ -1,0 +1,3 @@
+#!/bin/sh
+
+app/_build/dev/rel/socialshare/bin/socialshare start
