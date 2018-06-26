@@ -13,7 +13,7 @@ resources:
   - name: socialshare-docker-((build-env))
     type: docker-image
     source:
-      repository: ((dockerhub-username))/socialshare
+      repository: ((dockerhub-username))/socialshare-((build-env))
       username: ((dockerhub-username))
       password: ((dockerhub-password))
 
@@ -26,6 +26,8 @@ jobs:
         trigger: true
       - task: mix-build
         file: socialshare/pipeline/mix-build.yml
+      - task: test
+        file: socialshare/pipeline/test.yml
 #      - task: create-context
 #        file: socialshare/pipeline/create-context.yml
       - put: socialshare-docker-((build-env))
