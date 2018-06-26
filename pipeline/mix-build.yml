@@ -10,7 +10,13 @@ inputs:
   - name: socialshare
 
 outputs:
-  - name:  _build
+  - name: socialshare
+
+# cache some of the outputs to speed up the build
+caches:
+  - path: node_modules
+  - path: deps
+  - path: _build
 
 run:
   path: pipeline/build.sh
