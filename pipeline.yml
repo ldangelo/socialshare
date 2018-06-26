@@ -18,7 +18,7 @@ resources:
       password: ((dockerhub-password))
 
 jobs:
-  - name: build
+  - name: build-deploy
     public: false
     serial: true
     plan:
@@ -26,14 +26,10 @@ jobs:
         trigger: true
       - task: update-dependencies
         file: socialshare/pipeline/update-dependencies.yml
-      - aggregate:
-          - task: mix-build
-            file: socialshare/pipeline/mix-build.yml
-          - task: test
-            file: socialshare/pipeline/test.yml
-#      - task: create-context
-#        file: socialshare/pipeline/create-context.yml
-
+      - task: mix-build
+        file: socialshare/pipeline/mix-build.yml
+      - task: test
+        file: socialshare/pipeline/test.yml
       - put: socialshare-docker-((build-env))
         params:
           inputs: app
