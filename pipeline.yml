@@ -24,6 +24,11 @@ jobs:
     plan:
       - get: socialshare
         trigger: true
+
+  - name: update-dependencies
+    public: false
+    serial: true
+    plan:
       - task: update-dependencies
         file: socialshare/pipeline/update-dependencies.yml
       - task: mix-build
