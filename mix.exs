@@ -4,7 +4,7 @@ defmodule Socialshare.Mixfile do
   def project do
     [
       app: :socialshare,
-      version: "0.0.1",
+      version: "1.0.0",
       elixir: "~> 1.6",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -22,9 +22,8 @@ defmodule Socialshare.Mixfile do
       mod: {Socialshare.Application, []},
       included_applications: [
         :guardian,
-        :html5ever,
         :ja_serializer,
-        :codepagex,
+#        :codepagex,
         :timex_ecto
       ],
       applications: [
@@ -40,7 +39,8 @@ defmodule Socialshare.Mixfile do
         :ueberauth_linkedin,
         :timex,
         :httpotion,
-        :scrape
+        :feeder_ex,
+        :parse_trans
       ]
     ]
   end
@@ -55,7 +55,6 @@ defmodule Socialshare.Mixfile do
   defp deps do
     [
       {:distillery, "~> 1.0", override: true},
-      {:mix_docker, "~> 0.5.0"},
       {:phoenix, "~> 1.3.0"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
@@ -72,8 +71,9 @@ defmodule Socialshare.Mixfile do
       {:timex, "~> 3.0"},
       {:timex_ecto, "~> 3.0"},
       {:httpotion, "~> 3.1.0"},
-      {:scrape, "~> 2.0"},
-      {:html5ever, "~> 0.5.0", override: true, git: "http://github.com/hansihe/html5ever_elixir.git"}
+#      {:scrape, "~> 2.0"},
+#      {:html5ever, "~> 0.5.0", override: true},
+      {:feeder_ex, "~> 1.0"}      
     ]
   end
 

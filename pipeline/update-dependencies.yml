@@ -19,5 +19,5 @@ caches:
   - path: socialshare/_build
 
 run:
-  path: pipeline/build.sh
+  path: pipeline/update-dependencies.sh
   dir: socialshare

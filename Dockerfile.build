@@ -2,8 +2,6 @@
 FROM bitwalker/alpine-elixir-phoenix
 ENV HOME=/opt/app/ TERM=xterm
 
-RUN apk add --no-cache rust cargo
-
 # Install Hex+Rebar
 RUN mix local.hex --force && \
 mix local.rebar --force

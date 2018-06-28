@@ -1,15 +1,36 @@
 resources:
-  - name: resource-socialshare
+  - name: socialshare
     type: git
     source:
       uri: https://github.com/ldangelo/socialshare.git
-      branch: develop
+      branch: ((branch-name))
+#  - name: socialshare-docker-((build-env))
+#    type: dockerimage
+#    source:
+#      repository: busybox
+#      username: ((dockerhub-username))
+#      password: ((dockerhub-password))
+  - name: socialshare-docker-((build-env))
+    type: docker-image
+    source:
+      repository: ((dockerhub-username))/socialshare-((build-env))
+      username: ((dockerhub-username))
+      password: ((dockerhub-password))
 
 jobs:
-  - name: job-build
+  - name: build-deploy
+    public: false
+    serial: true
     plan:
-      - get: resource-socialshare
+      - get: socialshare
         trigger: true
+#      - task: update-dependencies
+#         file: socialshare/pipeline/update-dependencies.yml
       - task: mix-build
-        privileged: true
-        file: resource-socialshare/pipeline/mix-build.yml
+        file: socialshare/pipeline/mix-build.yml
+      - task: test
+        file: socialshare/pipeline/test.yml
+      - put: socialshare-docker-((build-env))
+        params:
+          inputs: app
+          build: socialshare/docker

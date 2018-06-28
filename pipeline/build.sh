@@ -1,8 +1,7 @@
 #!/bin/bash
-apk add --no-cache rust cargo
-
-cargo update
-
 mix deps.get
-mix do compile, test
+mix compile
+mix release.init
+mix release
 
+cp -R _build ../app
